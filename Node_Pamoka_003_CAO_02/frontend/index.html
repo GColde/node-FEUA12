@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>List</title>
   </head>
   <body>
-    <ul id="brand-list"></ul>
+    <ul id="people-list"></ul>
     <a href="addName.html"> Add New Name </a>
     <script>
       const renderBrandList = (brands) => {
-        const list = document.getElementById("brand-list");
+        const list = document.getElementById("people-list");
         list.textContent = "";
 
         brands.forEach((item) => {
@@ -20,7 +20,7 @@
         });
       };
 
-      fetch("http://localhost:3000/brands")
+      fetch("http://localhost:3000/people")
         .then((resp) => resp.json())
         .then((response) => {
           renderBrandList(response);

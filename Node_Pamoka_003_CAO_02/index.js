@@ -11,28 +11,28 @@ app.get("/", (req, res) => {
   res.send("OK");
 });
 
-const brands = [{ name: "Bake", surname: "Cake" }];
+const people = [{ name: "Bake", surname: "Cake" }];
 
-app.get("/brands", (req, res) => {
-  res.send(brands);
+app.get("/people", (req, res) => {
+  res.send(people);
 });
 
-app.get("/brands/:firstLetter", (req, res) => {
-  const { firstLetter } = req.params;
-  console.log(firstLetter);
-
-  const filteredBrands = brands.filter(
-    (brand) => brand[0].toLowerCase() === firstLetter.toLowerCase()
-  );
-
-  res.send(filteredBrands);
-});
-
-app.post("/brands", (req, res) => {
+app.post("/people", (req, res) => {
   const { name, surname } = req.body;
-  brands.push({ name, surname });
-  res.send(brands);
+  people.push({ name, surname });
+  res.send(people);
 });
+
+// app.get("/people/:firstLetter", (req, res) => {
+//   const { firstLetter } = req.params;
+//   console.log(firstLetter);
+
+//   const filteredPeople = people.filter(
+//     (item) => item[0].toLowerCase() === firstLetter.toLowerCase()
+//   );
+
+//   res.send(filteredPeople);
+// });
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
