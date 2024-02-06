@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul id="brand-list"></ul>
+    <input id="name-input" name="brand" placeholder="Enter name..." />
+    <br />
+    <input id="surname-input" name="brand" placeholder="Enter Surname..." />
+    <br />
+    <button id="new-man">Add new name</button>
+    <a href="index.html"> Go back to list </a>
+    <script>
+      const addBrandButton = document.getElementById("new-man");
+
+      addBrandButton.addEventListener("click", () => {
+        const nameInput = document.getElementById("name-input");
+        const surnameInput = document.getElementById("surname-input");
+        const body = { name: nameInput.value, surname: surnameInput.value };
+
+        fetch("http://localhost:3000/people", {
+          method: "POST",
+          body: JSON.stringify(body),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((resp) => resp.json())
+          .then((response) => {
+            nameInput.value = "";
+            surnameInput.value = "";
+          })
+          .catch((error) => console.error(error));
+      });
+    </script>
+  </body>
+</html>
